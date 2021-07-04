@@ -5,7 +5,7 @@
 2. Set Data Structure appropriatly
 3. Set ADT for using
 
-### Cautions
+### Keep in mind
 - First work Second well
 
 
