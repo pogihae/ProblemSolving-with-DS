@@ -17,17 +17,11 @@ class Solution {
         
         for(Entry<Character, List<String>> entry : map.entrySet()){
             List<String> tmp = entry.getValue();
-            Collections.sort(tmp, (x,y) -> x.length() - y.length());
-            int start = 0;
+            Collections.sort(tmp);
             int len = tmp.size();
             
-            for(String ph : tmp){
-                for(int i = start; i<len; i++){
-                    if(ph.length() == tmp.get(i).length()) continue;
-                    if(ph.equals(tmp.get(i).substring(0,ph.length())))
-                        return false;
-                }
-                start++;
+            for(int i=0; i<len-1; i++){
+                if(tmp.get(i+1).startsWith(tmp.get(i))) return false;
             }
         }
         
