@@ -1,3 +1,9 @@
+/**
+*@todo save path only instead of saving each sequence
+@2021 09 09
+*/
+
+
 #include<stdio.h>
 #include<stdlib.h>
 #define MAX 1000
