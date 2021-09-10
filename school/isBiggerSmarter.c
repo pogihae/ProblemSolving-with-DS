@@ -1,11 +1,6 @@
-/**
-*@todo save path only instead of saving each sequence
-@2021 09 09
-*/
-
-
 #include<stdio.h>
 #include<stdlib.h>
+#include<string.h>
 #define MAX 1000
 
 typedef struct _Elephant {
@@ -13,19 +8,13 @@ typedef struct _Elephant {
 	int iq;
 	int idx;
 }Elephant;
-typedef struct _Sequence {
-	int *seq;
-	int len;
-}Sequence;
-
-Sequence* initSeqArr(int size);
-int* copyArr(int* src, int size);
 
 void sortByWeight(Elephant* e, int len);
 int getMaxIdx(Elephant* e, int len);
 void swap(Elephant* e, int x, int y);
 
-Sequence getLDS(Elephant* e, int len);
+int getLDS(Elephant* e, int len, int* edgeTo);
+void printLDS(Elephant* e, int* edgeTo, int start);
 
 int main() {
 	Elephant arr[MAX];
@@ -47,28 +36,17 @@ int main() {
 	sortByWeight(arr, size);
 
 	/*get longest decrease(IQ) sequence [DP]*/
-	Sequence max = getLDS(arr, size);
+	int* edgeTo = malloc(sizeof(int) * size);
+	int start = 0;
+	int max = getLDS(arr, size, edgeTo, &start);
 
 	/*print*/
-	printf("%d\n", max.len);
-	for (int i = 0; i < max.len; i++) printf("%d\n", max.seq[i]);
+	printf("%d\n", max);
+	printLDS(arr, edgeTo, start);
 
 	return 0;	
 }
 
-Sequence* initSeqArr(int size) {
-	Sequence* s = malloc(sizeof(Sequence) * size);
-	for (int i = 0; i < size; i++) {
-		s[i].seq = malloc(sizeof(int) * 1);
-		s[i].len = 1;
-	}
-	return s;
-}
-int* copyArr(int* src, int size) {
-	int* des = malloc(sizeof(int) * size);
-	for (int i = 0; i < size; i++) des[i] = src[i];
-	return des;
-}
 void sortByWeight(Elephant* e, int len) {
 	if (len <= 0) return;
 	swap(e, len - 1, getMaxIdx(e, len));
@@ -90,21 +68,33 @@ void swap(Elephant* e, int x, int y) {
 	e[x] = e[y];
 	e[y] = tmp;
 }
-Sequence getLDS(Elephant* e, int size) {
-	Sequence* length = initSeqArr(size); //init all length to 1
-	Sequence lds = length[0];
+int getLDS(Elephant* e, int size, int* edgeTo, int* start) {
+	int* length = malloc(sizeof(int) * size);
+	int max = 1;
+	
 	for (int i = 0; i < size; i++) {
-		length[i].seq[0] = e[i].idx;	//init sequence with each index
+		edgeTo[i] = i;
+		length[i] = 1;
 		for (int j = 0; j < i; j++) {
-			if (e[i].weight != e[j].weight && 
-				e[i].iq < e[j].iq && length[j].len + 1 > length[i].len) {
-				
-				length[i].len = length[j].len + 1;
-				length[i].seq = copyArr(length[j].seq, length[i].len);
-				length[i].seq[length[i].len - 1] = e[i].idx;	//add each index for sequence's last
+			if (e[i].weight != e[j].weight &&
+				e[i].iq < e[j].iq && length[j] + 1 > length[i]) {
+
+				length[i] = length[j] + 1;
+				edgeTo[i] = j;
 			}
 		}
-		if (length[i].len > lds.len) lds = length[i];
+		if (length[i] > max) {
+			max = length[i];
+			*start = i;
+		}
 	}
-	return lds;
+	return max;
+}
+void printLDS(Elephant* e, int* edgeTo, int start) {
+	if (start == edgeTo[start]) {
+		printf("%d\n", e[start].idx);
+		return;
+	}
+	printLDS(e, edgeTo, edgeTo[start]);
+	printf("%d\n", e[start].idx);
 }
