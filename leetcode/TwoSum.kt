@@ -3,7 +3,7 @@ class Solution {
         val numToIdx = HashMap<Int, Int>(nums.size / 2)
         
         for ((idx, value) in nums.withIndex()) {
-            val targetIdx = numToIdx.get(target - value)
+            val targetIdx = numToIdx[target - value]
             
             if (targetIdx != null) return intArrayOf(idx, targetIdx)
             numToIdx.put(value, idx)
@@ -16,4 +16,6 @@ class Solution {
 
 // binary search condition lo <= hi
 // index -> sort x
+
 // withIndex()
+// map[key]
