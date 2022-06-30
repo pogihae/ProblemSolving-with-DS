@@ -2,7 +2,7 @@ class Solution {
     fun maxProfit(prices: IntArray): Int {
         var max = 0
         
-        prices.reduceIndexed { i, min, value -> 
+        prices.reduce { min, value -> 
             max = maxOf(max, value - min)
             minOf(min, value)
         }
