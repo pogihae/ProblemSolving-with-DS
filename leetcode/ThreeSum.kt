@@ -49,3 +49,39 @@ class Solution {
 
 //중복 검사
 //sorted and sequantial -> "same item skip"
+
+class Solution2 {
+    fun threeSum(nums: IntArray): List<List<Int>> {
+        val answer = mutableListOf<List<Int>>()
+        
+        nums.sort()
+        
+        for (i in 0..nums.lastIndex - 2) {
+            if (nums[i] > 0) break
+            if (i > 0 && nums[i] == nums[i - 1]) continue
+            
+            var left = i + 1
+            var right = nums.lastIndex
+            
+            while (left < right) {
+                val sum = nums[i] + nums[left] + nums[right]
+                
+                when {
+                    sum < 0 -> left += 1
+                    sum > 0 -> right -= 1
+                    else -> {
+                        answer.add(listOf(nums[i], nums[left], nums[right]))
+                        
+                        left += 1
+                        right -= 1
+                    }
+                }
+                
+                while (left > i+1 && left < right && nums[left] == nums[left-1]) left += 1
+                while (right < nums.lastIndex && right > left && nums[right] == nums[right+1]) right -= 1
+            }
+        }
+        
+        return answer
+    }
+}
