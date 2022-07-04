@@ -39,3 +39,4 @@ class Solution {
 }
 
 //local funtion, val function
+//Stack.pop() when isEmpty return Exception
