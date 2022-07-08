@@ -5,6 +5,6 @@
 2. Set Data Structure appropriately
 
 
-#### From <https://programmers.co.kr/learn/challenges>
-#### From Introduction to Algorithms 3rd Edition
+#### From Programmers: Site
+#### From Introduction to Algorithms 3rd Edition: Book
 #### From LeetCode & Python Algorithm Interview: Book
