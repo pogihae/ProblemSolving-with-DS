@@ -39,4 +39,32 @@ class Solution {
 }
 
 //local funtion, val function
-//Stack.pop() when isEmpty return Exception
+//Stack.pop() when isEmpty, return Exception
+
+class Solution2 {
+    val ListNode?.value
+        get() = this?.`val` ?: 0
+    
+    fun addTwoNumbers(l1: ListNode?, l2: ListNode?): ListNode? {
+        val root = ListNode(-1)
+        var cur = root
+        
+        var p1 = l1
+        var p2 = l2
+        
+        var carry = 0
+        while (p1 != null || p2 != null || carry != 0) {
+            val sum = p1.value + p2.value + carry
+            
+            carry = sum / 10
+            
+            cur.next = ListNode(sum % 10)
+            
+            p1 = p1?.next
+            p2 = p2?.next
+            cur = cur.next
+        }
+        
+        return root.next
+    }
+}
