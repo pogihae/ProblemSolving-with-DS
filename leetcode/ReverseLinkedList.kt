@@ -21,3 +21,20 @@ class Solution {
     return reverse(head)
   }
 }
+//kotlin default value in parameter must place in end of args
+//non-recursive
+class Solution {
+    fun reverseList(head: ListNode?): ListNode? {
+        val reversedRoot = ListNode(-1)
+        
+        var cur = head
+        while (cur != null) {
+            val tmp = cur.next
+            cur.next = reversedRoot.next
+            reversedRoot.next = cur
+            cur = tmp
+        }
+        
+        return reversedRoot.next
+    }
+}
