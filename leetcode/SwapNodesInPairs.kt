@@ -37,3 +37,17 @@ class Solution {
         mid.next = tmp
     }
 }
+//recursive
+//swapPairs: swap and return swapped first
+class Solution2 {
+    fun swapPairs(head: ListNode?): ListNode? {
+        if (head == null || head.next == null) return head
+        
+        val next = head.next
+        val nextNext = next.next
+        head.next = swapPairs(nextNext)
+        next.next = head
+        
+        return next
+    }
+}
