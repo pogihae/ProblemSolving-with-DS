@@ -15,3 +15,5 @@ class Solution {
         return answer
     }
 }
+
+//LinkedHashMap(mapOf) vs HashMap(hashMapOf): maintain input order
