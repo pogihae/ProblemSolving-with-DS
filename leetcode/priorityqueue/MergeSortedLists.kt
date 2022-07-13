@@ -40,3 +40,7 @@ class Solution {
 
 // val comp = Comparator<Data> { x, y -> ~~~}
 // val comp = compareBy<Data> { it.data }
+// val comp = compareByDescending<Data> { it.data }
+// val mulComp = compareBy<Data>(
+//                  { it.data1 },  first sorted
+//                  { it.data2 } ) after sorted addition sort
