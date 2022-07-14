@@ -28,3 +28,5 @@ class Solution {
 //toUpperCase(): Char -> upperCase(): String
 
 //String.toInt() -> real integer
+
+//expression v.s non-expression (cannot be used func() = ~~~)
