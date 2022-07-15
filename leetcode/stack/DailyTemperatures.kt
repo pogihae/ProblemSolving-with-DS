@@ -36,3 +36,21 @@ class Solution2 {
         return answer
     }
 }
+//use arraydeque for stack (iterator right way)
+class Solution3 {
+    fun dailyTemperatures(temperatures: IntArray): IntArray {
+        val answer = IntArray(temperatures.size)
+        val days = ArrayDeque<Int>()
+        
+        for ((day, temp) in temperatures.withIndex()) {
+            while (days.isNotEmpty() && temperatures[days.peek()] < temp) {
+                val mDay = days.pop()
+                answer[mDay] = day - mDay
+            }
+            
+            days.push(day)
+        }
+        
+        return answer
+    }
+}
