@@ -26,3 +26,7 @@ class Solution {
         return answer
     }
 }
+
+//kotlin 2d array
+//Array(row) { Array<Any?>(col) {null} }
+//Array(height) { arrayOfNulls<Land?>(width) }
