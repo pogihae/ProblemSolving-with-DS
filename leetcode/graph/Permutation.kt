@@ -29,3 +29,33 @@ class Solution {
 //No!, MutableList<> contains add only
 
 //kotlin count one bit -> Integer.bitCount(num)
+
+class Solution2 {
+    fun permute(nums: IntArray): List<List<Int>> {
+        val answer = mutableListOf<List<Int>>()
+        
+        val res = ArrayDeque<Int>()
+        val visited = mutableSetOf<Int>()
+        
+        fun dfs() {
+            if (res.size == nums.size) {
+                answer.add(res.toMutableList())
+                return
+            }
+            
+            for (num in nums) {
+                if (num !in visited) {
+                    visited.add(num)
+                    res.addLast(num)
+                    dfs()
+                    visited.remove(num)
+                    res.removeLast()
+                }
+            }
+        }
+        
+        dfs()
+        
+        return answer
+    }
+}
