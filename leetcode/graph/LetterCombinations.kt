@@ -34,3 +34,40 @@ class Solution {
 
 //isEmpty -> check length
 //isBlank -> check length and all of char is white space
+
+class Solution2 {
+    fun letterCombinations(digits: String): List<String> {
+        if (digits.isBlank()) return listOf<String>()
+        
+        val digitToChars = mapOf(
+            '2' to "abc",
+            '3' to "def",
+            '4' to "ghi",
+            '5' to "jkl",
+            '6' to "mno",
+            '7' to "pqrs",
+            '8' to "tuv",
+            '9' to "wxyz"
+        )
+        
+        val answer = mutableListOf<String>()
+        val res = ArrayDeque<Char>()
+        
+        fun dfs() {
+            if (res.size == digits.length) {
+                answer.add(res.joinToString("")) //iteration??
+                return
+            }
+            
+            for (ch in digitToChars[digits[res.size]]!!) {
+                res.addLast(ch)
+                dfs()
+                res.removeLast()
+            }
+        }
+        
+        dfs()
+        
+        return answer
+    }
+}
