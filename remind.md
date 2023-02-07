@@ -20,3 +20,16 @@
   }
 ```
     
+    
+### Binary Tree Traversal
+
+```traversal.java
+  void traversal(Node root) {
+    if (root == null) return;
+    //pre-order
+    traversal(root.left);
+    //in-order
+    traversal(root.right);
+    //post-order
+  }
+```
