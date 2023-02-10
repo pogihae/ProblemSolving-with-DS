@@ -51,3 +51,8 @@
   //아이템 참조 공유 외에도 리스트 그 자체의 참조를 공유한다.
   List.subList(from, to) // exclusive end
 ```
+
+### SQL
+```sql
+DATE_FORMAT(date, '%Y%m')
+```
