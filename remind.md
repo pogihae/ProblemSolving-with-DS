@@ -56,3 +56,9 @@
 ```sql
 DATE_FORMAT(date, '%Y%m')
 ```
+
+### Priority Queue
+```que.java
+  Queue<T> pq = new PriorityQueue<>(Collections.reverseOrder());
+  Queue<T> pq = new PriorityQueue<>(length, Collections.reverseOrder());
+```
