@@ -105,3 +105,21 @@ DATE_FORMAT(date, '%Y%m')
   }
 
 ```
+
+### Reader
+```BufferedReader.java
+public static void main() throws IOException {
+  BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+  StringTokenizer st = new StringTokenizer(br.readLine());
+  
+  int x = Integer.parseInt(st.nextToken());
+  int y = Integer.parseInt(st.nextToken());
+}
+```
+
+### List Sort
+```ListSort.java
+List<T> list = new LinkedList<>();
+list.sort(null);
+list.sort((x, y) -> x - y);
+```
