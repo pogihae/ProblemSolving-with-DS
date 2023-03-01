@@ -151,3 +151,41 @@ while (n != 0) {
   n >>= 1; // n /= 2
 }
 ```
+
+### Binary Search
+```bs.java
+int binarySearch(arr, target) {
+  int low = 0;
+  int high = arr.length - 1;
+  
+  while (low < high) {
+    int mid = (low + high) / 2;
+    if (arr[mid] < target) {
+      low = mid + 1;
+    } else if (arr[mid] == target) {
+      return mid;
+    } else {
+      high = mid - 1;
+    }
+  }
+  
+  return -1;
+}
+
+// lowerBound == target <= Resd인 최소 Res
+int lowerBound(arr, target) {
+  int low = 0;
+  int high = arr.length - 1;
+  
+  while (low < high) {
+    int mid = (low + high) / 2;
+    if (arr[mid] < target) {
+      low = mid + 1;
+    } else {
+      high = mid;
+    }
+  }
+  
+  return high;
+}
+```
