@@ -123,3 +123,31 @@ List<T> list = new LinkedList<>();
 list.sort(null);
 list.sort((x, y) -> x - y);
 ```
+
+### Pow - Mod
+  Modulo 분배법칙
+  - (A + B) % M = ((A % M) + (B % M)) % M
+  - (A - B) % M = ((A % M) - (B % M) + M) % M
+  - (A * B) % M = ((A % M) - (B % M)) % M
+
+```PowMod.java
+// a^n(mod m)
+
+// brute-force
+long res = 1;
+for (int i=0; i<n; i++) {
+  res *= a;
+  res %= m;
+}
+
+// divide and conqeur
+// a^n(mod m) == (a^t)^2(mod m), when t == n / 2
+// O(n) -> O(log n)
+
+long res = 1;
+while (n != 0) {
+  if ((n & 1) != 0) res = (res * a) % m; // if n % 2 != 0
+  a = (a * a) % m;
+  n >>= 1; // n /= 2
+}
+```
