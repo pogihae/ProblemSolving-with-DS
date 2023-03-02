@@ -193,4 +193,33 @@ int lowerBound(arr, target) {
 ### 반올림
   특정 자리 수 반올림은 수 표현의 영역 -> String.format, 아예 정수형으로 변경을 위한 첫번째 자리 반올림 -> Math.round
   
-
+### LIS
+```LIS.java
+  // DP
+  int[] dp = new int[N];
+  for (int i=0; i<N; i++) {
+    dp[i] = 1;
+    for (int j=0; j<i; j++) {
+      if (arr[i] > arr[j]) {
+        dp[i] = Math.max(dp[i], dp[j] + 1);
+      }
+    }
+  }
+  
+  // BS
+  List<Integer> lis = new ArrayList<>();
+  lis.add(arr[0]);
+  
+  for (int i=1; i<N; i++) {
+    int num = arr[i];
+    if (num > lis.get(lis.size() - 1)) {
+      lis.add(num);
+    } else {
+      int idx = Collections.binarySearch(lis, num);
+      if (idx < 0) {
+        idx = -(idx + 1);
+      }
+      lis.set(idx, num);
+    }
+  }
+```
