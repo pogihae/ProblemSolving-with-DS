@@ -189,3 +189,8 @@ int lowerBound(arr, target) {
   return high;
 }
 ```
+
+### 반올림
+  특정 자리 수 반올림은 수 표현의 영역 -> String.format, 아예 정수형으로 변경을 위한 첫번째 자리 반올림 -> Math.round
+  
+
