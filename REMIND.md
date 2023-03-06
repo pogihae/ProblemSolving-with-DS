@@ -12,7 +12,7 @@
       
       for (Node child : node.childs) {
         if (visit.get(child) == false) {
-          visit.put(child, true);
+          visit.put(child, true); // 중복 삽입 방지
           que.add(child);
         }
       }
